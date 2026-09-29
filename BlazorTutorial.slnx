@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/EmployeeManagement.Models/" />
+  <Project Path="EmployeeManagement.Api/EmployeeManagement.Api.csproj" />
+  <Project Path="EmployeeManagement.Models/EmployeementManagement.Models.csproj" />
+  <Project Path="EmployeeManagement.Web/EmployeeManagement.Web.csproj" />
+  <Project Path="EmployeeManagement.WebAssembly/EmployeeManagement.WebAssembly.csproj" />
+</Solution>

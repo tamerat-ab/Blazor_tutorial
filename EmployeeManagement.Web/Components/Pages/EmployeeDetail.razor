@@ -1,0 +1,43 @@
+@page "/employees/{Id:int}"
+@page "/employeedetails/{Id:int}"
+@using EmployeeManagement.Models
+
+<PageTitle>Employee Details</PageTitle>
+
+<a class="btn btn-link px-0 mb-3" href="/">&larr; Back to employees</a>
+
+@if (IsLoading)
+{
+    <p role="status">Loading employee...</p>
+}
+else if (!string.IsNullOrWhiteSpace(ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">@ErrorMessage</div>
+}
+else if (Employee is null)
+{
+    <div class="alert alert-warning" role="alert">Employee not found.</div>
+}
+else
+{
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <img src="@ImageUrl(Employee.PhotoPath)"
+             alt="@($"{Employee.FirstName} {Employee.LastName}")"
+             width="96"
+             height="96"
+             class="rounded-circle object-fit-cover" />
+        <h1 class="h2 mb-0">@Employee.FirstName @Employee.LastName</h1>
+    </div>
+    <dl class="row">
+        <dt class="col-sm-3">Employee ID</dt>
+        <dd class="col-sm-9">@Employee.EmployeeId</dd>
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Employee.Email</dd>
+        <dt class="col-sm-3">Department</dt>
+        <dd class="col-sm-9">@Employee.Department?.Name</dd>
+        <dt class="col-sm-3">Gender</dt>
+        <dd class="col-sm-9">@Employee.Gender</dd>
+        <dt class="col-sm-3">Photo path</dt>
+        <dd class="col-sm-9">@Employee.PhotoPath</dd>
+    </dl>
+}

@@ -1,0 +1,11 @@
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/bin/Debug/net10.0/EmployeeManagement.Models.deps.json
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/bin/Debug/net10.0/EmployeeManagement.Models.dll
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/bin/Debug/net10.0/EmployeeManagement.Models.pdb
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/EmployeementManagement.Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/EmployeementManagement.Models.AssemblyInfoInputs.cache
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/EmployeementManagement.Models.AssemblyInfo.cs
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/EmployeementManagement.Models.csproj.CoreCompileInputs.cache
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/EmployeeManagement.Models.dll
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/refint/EmployeeManagement.Models.dll
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/EmployeeManagement.Models.pdb
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/ref/EmployeeManagement.Models.dll

@@ -1,0 +1,89 @@
+﻿@page "/"
+@using EmployeeManagement.Models
+@inject EmployeeApiClient EmployeeApi
+@inject IConfiguration Configuration
+
+<PageTitle>Employees</PageTitle>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+	<div>
+		<h1 class="h2 mb-1">Employees</h1>
+		<p class="text-muted mb-0">Employee records from EmployeeManagement API</p>
+	</div>
+	@if (Employees is not null)
+	{
+		<span class="badge bg-secondary">@Employees.Count records</span>
+	}
+</div>
+
+@if (IsLoading)
+{
+	<p role="status">Loading employees...</p>
+}
+else if (!string.IsNullOrWhiteSpace(ErrorMessage))
+{
+	<div class="alert alert-danger" role="alert">@ErrorMessage</div>
+}
+else if (Employees is { Count: 0 })
+{
+	<p>No employees found.</p>
+}
+else
+{
+	<div class="employee-grid">
+		@foreach (var employee in Employees!)
+		{
+			<article class="employee-card">
+				<img src="@ImageUrl(employee.PhotoPath)"
+					 alt="@($"{employee.FirstName} {employee.LastName}")"
+					 class="employee-photo" />
+				<h2>@employee.FirstName @employee.LastName</h2>
+				<p>@employee.Email</p>
+				<p>Department @employee.DepartmentId</p>
+				<div class="employee-actions">
+					<a class="btn btn-primary" href="employees/@employee.EmployeeId">View</a>
+					<a class="btn btn-primary" href="employees/@employee.EmployeeId/edit">Edit</a>
+					<button class="btn btn-danger" @onclick="() => DeleteEmployee(employee)">Delete</button>
+				</div>
+			</article>
+		}
+	</div>
+}
+
+@code {
+	private List<Employee>? Employees;
+	private bool IsLoading = true;
+	private string? ErrorMessage;
+
+	private string ImageUrl(string photoPath) =>
+		$"{Configuration["ApiBaseUrl"]?.TrimEnd('/')}/{photoPath.TrimStart('/')}";
+
+	private async Task DeleteEmployee(Employee employee)
+	{
+		try
+		{
+			await EmployeeApi.DeleteEmployeeAsync(employee.EmployeeId);
+			Employees?.Remove(employee);
+		}
+		catch (HttpRequestException)
+		{
+			ErrorMessage = "The employee could not be deleted.";
+		}
+	}
+
+	protected override async Task OnInitializedAsync()
+	{
+		try
+		{
+			Employees = (await EmployeeApi.GetEmployeesAsync()).ToList();
+		}
+		catch (HttpRequestException)
+		{
+			ErrorMessage = "Could not reach the API. Confirm it is running at http://localhost:5168.";
+		}
+		finally
+		{
+			IsLoading = false;
+		}
+	}
+}

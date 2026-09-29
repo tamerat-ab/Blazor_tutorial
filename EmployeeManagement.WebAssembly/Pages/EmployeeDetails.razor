@@ -1,0 +1,74 @@
+@page "/employees/{Id:int}"
+@using EmployeeManagement.Models
+@inject EmployeeApiClient EmployeeApi
+@inject IConfiguration Configuration
+
+<PageTitle>Employee Details</PageTitle>
+
+<a class="btn btn-link px-0 mb-3" href="/">&larr; Back to employees</a>
+
+@if (IsLoading)
+{
+    <p role="status">Loading employee...</p>
+}
+else if (!string.IsNullOrWhiteSpace(ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">@ErrorMessage</div>
+}
+else if (Employee is null)
+{
+    <div class="alert alert-warning" role="alert">Employee not found.</div>
+}
+else
+{
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <img src="@ImageUrl(Employee.PhotoPath)"
+             alt="@($"{Employee.FirstName} {Employee.LastName}")"
+             width="96"
+             height="96"
+             class="rounded-circle object-fit-cover" />
+        <h1 class="h2 mb-0">@Employee.FirstName @Employee.LastName</h1>
+    </div>
+    <dl class="row">
+        <dt class="col-sm-3">Employee ID</dt>
+        <dd class="col-sm-9">@Employee.EmployeeId</dd>
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Employee.Email</dd>
+        <dt class="col-sm-3">Department</dt>
+        <dt class="col-sm-9">@Employee.DepartmentName</dt>
+        <dd class="col-sm-9">@Employee.DepartmentId</dd>
+        <dt class="col-sm-3">Gender</dt>
+        <dd class="col-sm-9">@Employee.Gender</dd>
+    </dl>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Employee? Employee;
+    private bool IsLoading = true;
+    private string? ErrorMessage;
+
+    private string ImageUrl(string photoPath) =>
+        $"{Configuration["ApiBaseUrl"]?.TrimEnd('/')}/{photoPath.TrimStart('/')}";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        IsLoading = true;
+        ErrorMessage = null;
+
+        try
+        {
+            Employee = await EmployeeApi.GetEmployeeAsync(Id);
+        }
+        catch (HttpRequestException)
+        {
+            ErrorMessage = "Could not reach the API. Confirm it is running at http://localhost:5168.";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+}

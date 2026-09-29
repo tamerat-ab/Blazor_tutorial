@@ -1,0 +1,80 @@
+@page "/employees/{Id:int}/edit"
+@using EmployeeManagement.Models
+@using EmployeeManagement.Web.Services
+@inject IEmployeeService EmployeeService
+@inject NavigationManager Navigation
+
+<PageTitle>Edit Employee</PageTitle>
+
+<h1 class="h2 mb-4">Edit Employee</h1>
+
+@if (IsLoading)
+{
+    <p role="status">Loading employee...</p>
+}
+else if (!string.IsNullOrWhiteSpace(ErrorMessage))
+{
+    <div class="alert alert-danger">@ErrorMessage</div>
+}
+else if (Employee is not null)
+{
+    <EditForm Model="Employee" OnValidSubmit="SaveEmployee">
+        <div class="mb-3">
+            <label class="form-label" for="firstName">First name</label>
+            <InputText id="firstName" class="form-control" @bind-Value="Employee.FirstName" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="lastName">Last name</label>
+            <InputText id="lastName" class="form-control" @bind-Value="Employee.LastName" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <InputText id="email" class="form-control" @bind-Value="Employee.Email" />
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-secondary ms-2" href="/">Cancel</a>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Employee? Employee;
+    private bool IsLoading = true;
+    private string? ErrorMessage;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            Employee = await EmployeeService.GetEmployee(Id);
+            if (Employee is null)
+                ErrorMessage = "Employee not found.";
+        }
+        catch (HttpRequestException)
+        {
+            ErrorMessage = "Could not reach the API.";
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private async Task SaveEmployee()
+    {
+        if (Employee is null)
+            return;
+
+        try
+        {
+            await EmployeeService.UpdateEmployee(Employee);
+            Navigation.NavigateTo($"/employees/{Employee.EmployeeId}");
+        }
+        catch (HttpRequestException)
+        {
+            ErrorMessage = "The employee could not be updated.";
+        }
+    }
+}
