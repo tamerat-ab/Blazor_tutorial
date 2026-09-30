@@ -225,9 +225,10 @@
 /Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/bin/Debug/net10.0/EmployeeManagement.Api.staticwebassets.endpoints.json
 /Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/bin/Debug/net10.0/EmployeeManagement.Api
 /Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/scopedcss/Components/Layout/SubLayOut.razor.rz.scp.css
-/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/zawnvftpyd-{0}-5wvf33ajs1-5wvf33ajs1.gz
-/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/xfpa2fwf1j-{0}-5wvf33ajs1-5wvf33ajs1.gz
 /Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/bin/Debug/net10.0/EmployeeManagement.Api.staticwebassets.runtime.json
-/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/1q6escq8ro-{0}-9hsif5t8mt-9hsif5t8mt.gz
-/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/jhs9q83ud5-{0}-dwu72t6gfx-dwu72t6gfx.gz
-/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/ckzfow7h3l-{0}-zsuykrdwkx-zsuykrdwkx.gz
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/EmployeeManagement.Web.sourcelink.json
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/ckzfow7h3l-{0}-3608wqtfqv-3608wqtfqv.gz
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/1q6escq8ro-{0}-f7fxoh55ae-f7fxoh55ae.gz
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/jhs9q83ud5-{0}-68qhiysw0j-68qhiysw0j.gz
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/zawnvftpyd-{0}-68pz4q9e1d-68pz4q9e1d.gz
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Web/obj/Debug/net10.0/compressed/xfpa2fwf1j-{0}-68pz4q9e1d-68pz4q9e1d.gz

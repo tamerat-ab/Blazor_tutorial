@@ -1,43 +1,33 @@
-@page "/employees/{Id:int}"
-@page "/employeedetails/{Id:int}"
-@using EmployeeManagement.Models
+@page "/employeedetails/{id}"
+@page "/employeedetails"
+@inherits EmployeeDetailsBase
 
-<PageTitle>Employee Details</PageTitle>
-
-<a class="btn btn-link px-0 mb-3" href="/">&larr; Back to employees</a>
-
-@if (IsLoading)
+@if (Employee == null || Employee.Department == null)
 {
-    <p role="status">Loading employee...</p>
-}
-else if (!string.IsNullOrWhiteSpace(ErrorMessage))
-{
-    <div class="alert alert-danger" role="alert">@ErrorMessage</div>
-}
-else if (Employee is null)
-{
-    <div class="alert alert-warning" role="alert">Employee not found.</div>
+    <div class="spinner"></div>
 }
 else
 {
-    <div class="d-flex align-items-center gap-3 mb-4">
-        <img src="@ImageUrl(Employee.PhotoPath)"
-             alt="@($"{Employee.FirstName} {Employee.LastName}")"
-             width="96"
-             height="96"
-             class="rounded-circle object-fit-cover" />
-        <h1 class="h2 mb-0">@Employee.FirstName @Employee.LastName</h1>
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1>@Employee.FirstName @Employee.LastName</h1>
+                </div>
+
+                <div class="card-body text-center">
+                    <img class="card-img-top" src="@Employee.PhotoPath" />
+
+                    <h4>Employee ID : @Employee.EmployeeId</h4>
+                    <h4>Email : @Employee.Email</h4>
+                    <h4>Department : @Employee.Department.DepartmentName</h4>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="/" class="btn btn-primary">Back</a>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <dl class="row">
-        <dt class="col-sm-3">Employee ID</dt>
-        <dd class="col-sm-9">@Employee.EmployeeId</dd>
-        <dt class="col-sm-3">Email</dt>
-        <dd class="col-sm-9">@Employee.Email</dd>
-        <dt class="col-sm-3">Department</dt>
-        <dd class="col-sm-9">@Employee.Department?.Name</dd>
-        <dt class="col-sm-3">Gender</dt>
-        <dd class="col-sm-9">@Employee.Gender</dd>
-        <dt class="col-sm-3">Photo path</dt>
-        <dd class="col-sm-9">@Employee.PhotoPath</dd>
-    </dl>
 }

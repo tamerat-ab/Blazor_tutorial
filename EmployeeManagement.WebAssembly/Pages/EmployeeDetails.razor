@@ -35,8 +35,7 @@ else
         <dt class="col-sm-3">Email</dt>
         <dd class="col-sm-9">@Employee.Email</dd>
         <dt class="col-sm-3">Department</dt>
-        <dt class="col-sm-9">@Employee.DepartmentName</dt>
-        <dd class="col-sm-9">@Employee.DepartmentId</dd>
+        <dd class="col-sm-9">@(Employee.Department?.DepartmentName ?? $"Department {Employee.DepartmentId}")</dd>
         <dt class="col-sm-3">Gender</dt>
         <dd class="col-sm-9">@Employee.Gender</dd>
     </dl>
