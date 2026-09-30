@@ -9,3 +9,4 @@
 /Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/refint/EmployeeManagement.Models.dll
 /Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/EmployeeManagement.Models.pdb
 /Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/ref/EmployeeManagement.Models.dll
+/Users/tameratmcexternal/NetPrograms/EmployeeManagement.Models/obj/Debug/net10.0/EmployeementManagement.Models.sourcelink.json
