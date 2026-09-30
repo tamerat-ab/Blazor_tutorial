@@ -4,41 +4,19 @@ using Microsoft.AspNetCore.Components;
 
 namespace EmployeeManagement.Web.Components.Pages;
 
-public partial class EmployeeDetail : ComponentBase
-{
-    [Inject]
-    public IEmployeeService EmployeeService { get; set; } = default!;
-
-    [Inject]
-    public IConfiguration Configuration { get; set; } = default!;
-
-    [Parameter]
-    public int Id { get; set; }
-
-    public Employee? Employee { get; set; }
-    public bool IsLoading { get; private set; } = true;
-    public string? ErrorMessage { get; private set; }
-
-    protected override async Task OnParametersSetAsync()
+public class EmployeeDetailsBase : ComponentBase
     {
-        IsLoading = true;
-        ErrorMessage = null;
-        Employee = null;
+        public Employee Employee { get; set; } = new Employee();
 
-        try
+        [Inject]
+        public IEmployeeService EmployeeService { get; set; }
+
+        [Parameter]
+        public string Id { get; set; }
+
+        protected async override Task OnInitializedAsync()
         {
-            Employee = await EmployeeService.GetEmployee(Id);
-        }
-        catch (HttpRequestException)
-        {
-            ErrorMessage = "Could not reach the API. Confirm it is running at http://localhost:5168.";
-        }
-        finally
-        {
-            IsLoading = false;
+            Id = Id ?? "1";
+            Employee = await EmployeeService.GetEmployee(int.Parse(Id));
         }
     }
-
-    private string ImageUrl(string photoPath) =>
-        $"{Configuration["ApiBaseUrl"]?.TrimEnd('/')}/{photoPath.TrimStart('/')}";
-}
